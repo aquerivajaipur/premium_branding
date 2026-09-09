@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQUERIVA | Custom Branded Packaged Drinking Water</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0088ff;
+      --primary-dark: #003a8c;
+      --accent: #00e5ff;
+      --bg-dark: #050b14;
+      --card-bg: rgba(10, 25, 47, 0.65);
+      --glass-border: rgba(0, 229, 255, 0.2);
+      --text: #e2f1ff;
+      --text-muted: #8ca2bf;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Interactive VFX Particle Canvas */
+    #vfx-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing Ambient Lights */
+    .glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      z-index: 0;
+      pointer-events: none;
+      animation: floatGlow 10s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      top: -100px;
+      left: -100px;
+      width: 450px;
+      height: 450px;
+      background: #00e5ff;
+    }
+    .orb-2 {
+      bottom: 50px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: #0051ff;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 80px) scale(1.15); }
+    }
+
+    /* Content Wrapper */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Navigation Bar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 8%;
+      background: rgba(5, 11, 20, 0.7);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-waterdrop {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #00e5ff, #0051ff);
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(-45deg);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+      border: 2px solid #fff;
+    }
+
+    .brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffffff, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #0088ff, #00e5ff);
+      color: #050b14;
+      font-weight: 700;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.7);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 10% 2rem;
+      position: relative;
+    }
+
+    .tagline-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #00e5ff, #0088ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+    }
+
+    .hero-desc {
+      max-width: 650px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 229, 255, 0.15);
+    }
+
+    /* Interactive 3D Card / Feature Grid */
+    .features-section {
+      padding: 5rem 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      border-radius: 18px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transition: 0.5s;
+    }
+
+    .glass-card:hover::before {
+      left: 100%;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* Calculator & Quotation System */
+    .quote-section {
+      padding: 5rem 8%;
+      background: radial-gradient(circle at center, rgba(0, 136, 255, 0.08) 0%, transparent 70%);
+    }
+
+    .calculator-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .select-box, input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(5, 11, 20, 0.8);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .select-box:focus, input[type="text"]:focus, input[type="tel"]:focus {
+      border-color: var(--accent);
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--accent);
+      height: 6px;
+      background: #1e3a5f;
+      border-radius: 5px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    .quote-display {
+      background: rgba(0, 136, 255, 0.08);
+      border: 1px dashed var(--accent);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 0.5rem 0;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    }
+
+    .price-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .specs-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .specs-list li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .specs-list li i {
+      color: var(--accent);
+    }
+
+    /* Contact Footer */
+    footer {
+      background: #02060d;
+      border-top: 1px solid rgba(0, 229, 255, 0.15);
+      padding: 4rem 8% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 3rem;
+    }
+
+    .footer-info h3 {
+      font-size: 1.4rem;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-item:hover {
+      color: var(--accent);
+    }
+
+    .contact-item i {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Particle Canvas (VFX) -->
+  <canvas id="vfx-canvas"></canvas>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <div class="content-wrapper">
+    <!-- Navbar -->
+    <header>
+      <a href="#" class="brand-logo">
+        <img src="logo.png" alt="Aqueriva Logo" style="height: 40px; width: auto;" />
+        <span class="brand-name">AQUERIVA</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Solutions</a>
+        <a href="#quote">Instant Quote</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:7851074751" class="cta-button">
+          <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="tagline-badge">Custom Packaged Drinking Water</div>
+      <h1 class="hero-title">
+        Elevate Your Brand With <br />
+        <span>Custom Branded Water</span>
+      </h1>
+      <p class="hero-desc">
+        Premium purified packaged drinking water customized with your brand identity. Perfect for luxury hotels, corporate events, royal weddings, and elite hospitality across Jaipur.
+      </p>
+      <div class="hero-actions">
+        <a href="#quote" class="cta-button">
+          <i class="fa-solid fa-calculator"></i> Build Instant Quotation
+        </a>
+        <a href="https://instagram.com/aqueriva_jaipur" target="_blank" class="btn-secondary">
+          <i class="fa-brands fa-instagram"></i> Follow @aqueriva_jaipur
+        </a>
+      </div>
+    </section>
+
+    <!-- Features / Value Prop -->
+    <section class="features-section" id="features">
+      <h2 class="section-title">Designed for Every Occasion</h2>
+      <div class="features-grid">
+        <div class="glass-card">
+          <i class="fa-solid fa-hotel card-icon"></i>
+          <h3>Hotels & Restaurants</h3>
+          <p>Serve water carrying your private label on dining tables, in banquet suites, and at reception lounges.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-ring card-icon"></i>
+          <h3>Weddings & Celebrations</h3>
+          <p>Personalize bottles with couple initials, wedding themes, and luxury metallic label finishes.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-briefcase card-icon"></i>
+          <h3>Corporate Events</h3>
+          <p>Boost boardroom presence and trade summits with executive, leak-proof customized hydration.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-shield-halved card-icon"></i>
+          <h3>7-Stage Purification</h3>
+          <p>Mineral-balanced, RO-UV treated, highest purity standards conforming to certified norms.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotation System -->
+    <section class="quote-section" id="quote">
+      <h2 class="section-title">Instant Quotation Generator</h2>
+      <div class="calculator-container">
+        <div class="calc-grid">
+          <!-- Left Controls -->
+          <div class="calc-controls">
+            <div class="form-group">
+              <label for="bottleSize">Select Bottle Volume</label>
+              <select id="bottleSize" class="select-box">
+                <option value="250">250 ml (Pocket & Banquets)</option>
+                <option value="500" selected>500 ml (Standard Dining)</option>
+                <option value="1000">1000 ml (1 Litre Luxury)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="labelFinish">Label Quality & Finish</label>
+              <select id="labelFinish" class="select-box">
+                <option value="gloss">Glossy Vinyl (Waterproof)</option>
+                <option value="matte">Velvet Matte Finish</option>
+                <option value="foil">Metallic Gold / Silver Foil (+₹1.50/pc)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Quantity: <strong id="qtyVal" style="color:var(--accent);">1000</strong> Units</label>
+              <input type="range" id="quantityRange" class="range-slider" min="300" max="10000" step="100" value="1000">
+            </div>
+
+            <div class="form-group">
+              <label for="clientName">Your Name / Organization</label>
+              <input type="text" id="clientName" placeholder="e.g. Royal Palace Hotel" />
+            </div>
+          </div>
+
+          <!-- Right: Summary and Live Estimate -->
+          <div class="quote-display">
+            <div>
+              <h3>Estimated Investment</h3>
+              <div class="price-value" id="totalEstimate">₹6,500*</div>
+              <p class="price-sub">*Inclusive of custom label printing & purification</p>
+              
+              <ul class="specs-list">
+                <li><i class="fa-solid fa-check"></i> <span id="summarySize">500 ml Bottles</span></li>
+                <li><i class="fa-solid fa-check"></i> <span id="summaryFinish">Velvet Matte Finish</span></li>
+                <li><i class="fa-solid fa-check"></i> <span id="summaryRate">₹6.50 per customized unit</span></li>
+                <li><i class="fa-solid fa-check"></i> Free delivery within Jaipur city on bulk orders</li>
+              </ul>
+            </div>
+
+            <button onclick="sendQuotationWhatsApp()" class="cta-button" style="width: 100%; justify-content: center;">
+              <i class="fa-brands fa-whatsapp"></i> Lock In Quote on WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3>AQUERIVA</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Custom branded packaged water solutions based in Jaipur. Refreshing purity, customized directly for your brand presence.
+          </p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <a href="tel:7851074751" class="contact-item">
+            <i class="fa-solid fa-phone"></i> +91 7851074751
+          </a>
+          <a href="mailto:aqueriva.jaipur@rediffmail.com" class="contact-item">
+            <i class="fa-solid fa-envelope"></i> aqueriva.jaipur@rediffmail.com
+          </a>
+          <a href="https://instagram.com/aqueriva_jaipur" target="_blank" class="contact-item">
+            <i class="fa-brands fa-instagram"></i> @aqueriva_jaipur
+          </a>
+        </div>
+
+        <div>
+          <h3>Operations Hub</h3>
+          <p class="contact-item">
+            <i class="fa-solid fa-location-dot"></i> Jaipur, Rajasthan, India
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Serving hotels, resorts, wedding planners, event organizers & corporate partners.
+          </p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2026 AQUERIVA - Custom Branded Water. All Rights Reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Background VFX Bubbles & Water Animation Script -->
+  <script>
+    const canvas = document.getElementById('vfx-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    class WaterBubble {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 100;
+        this.radius = Math.random() * 5 + 2;
+        this.speedY = Math.random() * 1.5 + 0.5;
+        this.speedX = Math.sin(Math.random()) * 0.4;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -20) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 229, 255, ${this.alpha})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#00e5ff';
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new WaterBubble());
+    }
+
+    function animateVFX() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateVFX);
+    }
+    animateVFX();
+
+    // Quotation Calculation Logic
+    const sizeSelect = document.getElementById('bottleSize');
+    const finishSelect = document.getElementById('labelFinish');
+    const qtyInput = document.getElementById('quantityRange');
+    const qtyVal = document.getElementById('qtyVal');
+
+    const totalEstimate = document.getElementById('totalEstimate');
+    const summarySize = document.getElementById('summarySize');
+    const summaryFinish = document.getElementById('summaryFinish');
+    const summaryRate = document.getElementById('summaryRate');
+
+    function calculateQuote() {
+      const size = parseInt(sizeSelect.value);
+      const finish = finishSelect.value;
+      const qty = parseInt(qtyInput.value);
+
+      qtyVal.textContent = qty.toLocaleString();
+
+      // Base price per unit according to bottle size
+      let baseRate = 5.5; // default for 250ml
+      if (size === 500) baseRate = 7.0;
+      if (size === 1000) baseRate = 12.0;
+
+      // Bulk tier discount
+      if (qty >= 5000) baseRate -= 0.8;
+      else if (qty >= 2000) baseRate -= 0.4;
+
+      // Finish addition
+      if (finish === 'foil') baseRate += 1.5;
+      if (finish === 'matte') baseRate += 0.5;
+
+      const total = Math.round(baseRate * qty);
+
+      totalEstimate.textContent = `₹${total.toLocaleString()}`;
+      summarySize.textContent = `${size} ml Customized Bottles`;
+      summaryFinish.textContent = finishSelect.options[finishSelect.selectedIndex].text;
+      summaryRate.textContent = `₹${baseRate.toFixed(2)} per bottle`;
+    }
+
+    [sizeSelect, finishSelect, qtyInput].forEach(el => el.addEventListener('input', calculateQuote));
+    calculateQuote();
+
+    // WhatsApp Action for Quotation
+    function sendQuotationWhatsApp() {
+      const client = document.getElementById('clientName').value || 'Customer';
+      const size = sizeSelect.value;
+      const qty = qtyInput.value;
+      const total = totalEstimate.textContent;
+      const finish = finishSelect.options[finishSelect.selectedIndex].text;
+
+      const message = `Hello Aqueriva Jaipur! I would like to place an inquiry for Custom Branded Water:%0A%0A- Name: ${encodeURIComponent(client)}%0A- Bottle Size: ${size}ml%0A- Finish: ${encodeURIComponent(finish)}%0A- Quantity: ${qty} units%0A- Estimated Quote: ${total}%0A%0APlease connect with me for bottle sampling and mockup design.`;
+
+      window.open(`https://wa.me/917851074751?text=${message}`, '_blank');
+    }
+  </script>
+</body>
+</html>

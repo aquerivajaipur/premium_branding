@@ -1,696 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AQUERIVA | Custom Branded Packaged Drinking Water</title>
-<meta name="description" content="AQUERIVA provides customized packaged drinking water for luxury hotels, corporate events, weddings, cafes, and business branding across Jaipur.">
-<meta name="theme-color" content="#061b3a">
-
-<!-- Fonts & Icons -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-  --navy: #061b3a;
-  --navy-dark: #031126;
-  --blue: #087cf5;
-  --aqua: #18c8e8;
-  --sky: #eaf7ff;
-  --white: #ffffff;
-  --ink: #10243e;
-  --muted: #61748c;
-  --line: #dcebf6;
-  --card-glass: rgba(6, 27, 58, 0.7);
-  --border-glass: rgba(24, 200, 232, 0.25);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Outfit', sans-serif;
-  color: var(--ink);
-  background: #ffffff;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.container {
-  width: min(1140px, 92%);
-  margin: auto;
-}
-
-/* Background VFX Canvas */
-#vfx-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-}
-
-/* Header & Nav */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(6, 27, 58, 0.94);
-  backdrop-filter: blur(12px);
-  color: #fff;
-  border-bottom: 1px solid rgba(24, 200, 232, 0.2);
-}
-
-.nav-inner {
-  height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.brand-waterdrop {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(135deg, #18c8e8, #087cf5);
-  border-radius: 50% 0 50% 50%;
-  transform: rotate(-45deg);
-  border: 2px solid #fff;
-  box-shadow: 0 0 15px rgba(24, 200, 232, 0.6);
-}
-
-.brand span {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #ffffff, #9eefff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.nav-links {
-  display: flex;
-  gap: 26px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.nav-links a {
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--aqua);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 999px;
-  font-weight: 700;
-  border: 0;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, var(--blue), var(--aqua));
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(8, 124, 245, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(8, 124, 245, 0.5);
-}
-
-.btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-}
-
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Hero Section */
-.hero {
-  background: radial-gradient(circle at 80% 20%, #0f5fae 0, #061b3a 45%, #031126 100%);
-  color: #fff;
-  padding: 90px 0 80px;
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 50px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.eyebrow {
-  display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid rgba(24, 200, 232, 0.4);
-  background: rgba(24, 200, 232, 0.1);
-  border-radius: 999px;
-  color: #9eefff;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(38px, 5.2vw, 68px);
-  line-height: 1.05;
-  margin-bottom: 20px;
-}
-
-.hero h1 span {
-  background: linear-gradient(90deg, #ffffff, #75eaff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #c8d9eb;
-  max-width: 620px;
-  margin-bottom: 28px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.hero-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 28px;
-  padding: 30px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-}
-
-.hero-preview-badge {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  background: rgba(24, 200, 232, 0.2);
-  color: var(--aqua);
-  padding: 4px 10px;
-  border-radius: 50px;
-  margin-bottom: 12px;
-}
-
-.hero-card h3 {
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.hero-card p {
-  font-size: 14px;
-  color: #a9bed6;
-  margin-bottom: 16px;
-}
-
-/* Sections */
-.section {
-  padding: 80px 0;
-}
-
-.section-head {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 44px;
-}
-
-.kicker {
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(30px, 3.8vw, 46px);
-  line-height: 1.15;
-  margin: 8px 0 12px;
-}
-
-.section-head p {
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.card {
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 28px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(20, 80, 120, 0.06);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--blue);
-}
-
-.card .icon {
-  font-size: 30px;
-  color: var(--blue);
-  margin-bottom: 14px;
-}
-
-.card h3 {
-  margin-bottom: 8px;
-  font-size: 20px;
-}
-
-.card p {
-  color: var(--muted);
-  font-size: 14.5px;
-}
-
-/* Bottle Sizes Section */
-.sizes {
-  background: var(--sky);
-}
-
-.size-card {
-  text-align: center;
-  padding: 32px 24px;
-  border-radius: 24px;
-  background: #fff;
-  border: 1px solid #d6ebf7;
-}
-
-.size-number {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--blue);
-  margin-bottom: 4px;
-}
-
-.size-card h4 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.size-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* Process Section */
-.dark {
-  background: var(--navy);
-  color: #fff;
-}
-
-.dark .section-head p {
-  color: #b8c9db;
-}
-
-.process {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.step {
-  position: relative;
-  padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.step-no {
-  font-size: 12px;
-  font-weight: 800;
-  color: #78e9ff;
-  letter-spacing: 1.2px;
-}
-
-.step h3 {
-  margin: 8px 0;
-  font-size: 18px;
-}
-
-.step p {
-  color: #b8c9db;
-  font-size: 13.5px;
-}
-
-/* Pure Quotation Segment (Strictly No Prices) */
-.quote-section {
-  padding: 85px 0;
-  background: radial-gradient(circle at center, #f2f9ff 0%, #ffffff 70%);
-}
-
-.quote-box-wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 36px;
-  box-shadow: 0 16px 45px rgba(6, 27, 58, 0.07);
-}
-
-.quote-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 32px;
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 16px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--muted);
-}
-
-.select-box, input[type="text"] {
-  width: 100%;
-  padding: 12px 16px;
-  background: #fbfdff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  color: var(--ink);
-  font-size: 15px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.select-box:focus, input[type="text"]:focus {
-  border-color: var(--blue);
-}
-
-.range-slider {
-  width: 100%;
-  accent-color: var(--blue);
-  height: 6px;
-  background: var(--line);
-  border-radius: 5px;
-  outline: none;
-  margin-top: 8px;
-}
-
-/* Specification Summary Ticket */
-.ticket-card {
-  background: var(--sky);
-  border: 1px dashed #087cf5;
-  border-radius: 20px;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.ticket-head {
-  border-bottom: 1px solid rgba(8, 124, 245, 0.15);
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-}
-
-.ticket-head h3 {
-  font-size: 19px;
-  color: var(--navy);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ticket-head small {
-  display: block;
-  font-size: 11px;
-  color: var(--blue);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  margin-top: 4px;
-}
-
-.ticket-list {
-  list-style: none;
-  margin-bottom: 24px;
-}
-
-.ticket-list li {
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: var(--ink);
-}
-
-.ticket-list li i {
-  color: var(--blue);
-  margin-top: 4px;
-  font-size: 13px;
-}
-
-.dispatch-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.btn-wa {
-  background: #25d366;
-  color: #032b14;
-  font-weight: 700;
-  padding: 13px;
-  border-radius: 999px;
-  border: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14.5px;
-  transition: opacity 0.2s;
-}
-
-.btn-wa:hover {
-  opacity: 0.92;
-}
-
-.btn-mail {
-  background: transparent;
-  border: 1px solid var(--blue);
-  color: var(--blue);
-  font-weight: 700;
-  padding: 12px;
-  border-radius: 999px;
-  border-width: 1.5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.btn-mail:hover {
-  background: rgba(8, 124, 245, 0.08);
-}
-
-/* Call to Action Banner */
-.cta {
-  background: linear-gradient(110deg, #0679ef, #12c5df);
-  color: #fff;
-  padding: 68px 0;
-}
-
-.cta-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.cta h2 {
-  margin: 0 0 6px 0;
-}
-
-.cta p {
-  opacity: 0.92;
-  max-width: 650px;
-}
-
-/* Contact Details */
-.contact-section {
-  padding: 80px 0;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-}
-
-.contact-box {
-  padding: 32px;
-  border-radius: 24px;
-  background: var(--sky);
-  border: 1px solid var(--line);
-}
-
-.contact-box h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-
-.contact-item {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.contact-item:last-child {
-  border: 0;
-}
-
-.contact-item i {
-  color: var(--blue);
-  font-size: 18px;
-}
-
-.contact-item small {
-  display: block;
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.contact-item a {
-  font-weight: 700;
-  color: var(--blue);
-}
-
-/* Footer */
-.footer {
-  background: var(--navy-dark);
-  color: #aebed0;
-  padding: 32px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  font-size: 13.5px;
-}
-
-@media (max-width: 860px) {
-  .nav-links { display: none; }
-  .hero-grid, .contact-grid, .quote-grid { grid-template-columns: 1fr; }
-  .cards, .process { grid-template-columns: 1fr 1fr; }
-  .hero { padding-top: 65px; }
-  .cta-inner { flex-direction: column; align-items: flex-start; }
-}
-
-@media (max-width: 560px) {
-  .cards, .process { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .quote-box-wrapper { padding: 22px; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQUERIVA | Custom Branded Packaged Drinking Water</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --navy: #050e1d;
+      --navy-deep: #020710;
+      --blue: #0077ff;
+      --blue-glow: #0088ff;
+      --cyan: #00f2fe;
+      --aqua: #4facfe;
+      --glass-bg: rgba(7, 21, 44, 0.65);
+      --glass-border: rgba(0, 242, 254, 0.22);
+      --glass-border-hover: rgba(0, 242, 254, 0.7);
+      --text: #f0f7ff;
+      --text-muted: #8ca5c4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--navy-deep);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Interactive VFX Particle Canvas */
+    #vfx-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing Ambient VFX Light Orbs */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: pulseGlow 12s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      top: -120px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #00f2fe, #0077ff);
+    }
+    .orb-2 {
+      bottom: -150px;
+      right: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #0051ff, #00f2fe);
+      animation-delay: -6s;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.18) translate(70px, 60px); }
+    }
+
+    .main-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Glassmorphic Animated Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(4, 13, 27, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(-45deg);
+      border: 2px solid #fff;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.7);
+      animation: waterFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes waterFloat {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(-4px); }
+    }
+
+    .brand-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffffff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nav-menu a {
+      color: var(--text-muted);
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+
+    .nav-menu a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    }
+
+    .header-contacts {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--cyan);
+      transition: all 0.3s;
+    }
+
+    .nav-phone-pill:hover {
+      background: rgba(0, 242, 254, 0.18);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      border: 0;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #030f1e;
+      box-shadow: 0 10px 25px rgba(0, 119, 255, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gradient::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-gradient:hover::after {
+      left: 100%;
+    }
+
+    .btn-gradient:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 242, 254, 0.55);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(0, 242, 254, 0.15);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 0 80px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      color: var(--cyan);
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 5.5vw, 70px);
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ffffff 10%, var(--cyan) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 242, 254, 0.35);
+    }
+
+    .hero p {
+      font-size: 18.5px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero 3D Card */
+    .hero-preview-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      border-radius: 32px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      transition: all 0.4s ease;
+    }
+
+    .hero-preview-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--cyan);
+      box-shadow: 0 30px 70px rgba(0, 242, 254, 0.25);
+    }
+
+    .bottle-glow-circle {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 20px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.3) 0%, transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px dashed var(--cyan);
+      animation: rotateBorder 20s linear infinite;
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .bottle-glow-circle i {
+      font-size: 60px;
+      color: var(--cyan);
+      text-shadow: 0 0 25px var(--cyan);
+    }
+
+    .hero-preview-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .hero-preview-card p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 95px 0;
+      position: relative;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 55px;
+    }
+
+    .section-tag {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4.2vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 16.5px;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 32px 26px;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.2);
+    }
+
+    .card-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover .card-icon-wrap {
+      background: var(--cyan);
+      color: var(--navy-deep);
+      box-shadow: 0 0 25px var(--cyan);
+    }
+
+    .glass-card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .glass-card p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* Animated Wave Divider */
+    .wave-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+    }
+
+    .wave-divider svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 65px;
+    }
+
+    .wave-divider .shape-fill {
+      fill: var(--navy);
+    }
+
+    /* Sizes Section */
+    .sizes-section {
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    }
+
+    .size-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    /* Process Flow */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background: rgba(5, 17, 36, 0.5);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 28px 22px;
+      position: relative;
+    }
+
+    .step-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+      background: rgba(0, 242, 254, 0.12);
+      padding: 4px 10px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .step-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Quotation Section (NO PRICES) */
+    .quote-section {
+      padding: 100px 0;
+      background: radial-gradient(circle at center, rgba(0, 119, 255, 0.12) 0%, transparent 70%);
+    }
+
+    .quote-box {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(25px);
+      border-radius: 34px;
+      padding: 42px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      margin-top: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .select-box, input[type="text"] {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(3, 10, 22, 0.85);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+
+    .select-box:focus, input[type="text"]:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--cyan);
+      height: 7px;
+      background: #112644;
+      border-radius: 5px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    /* Live Blueprint Ticket */
+    .ticket-panel {
+      background: rgba(0, 119, 255, 0.08);
+      border: 1.5px dashed var(--cyan);
+      border-radius: 24px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 0 25px rgba(0, 242, 254, 0.05);
+    }
+
+    .ticket-head {
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .ticket-head h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ticket-head small {
+      display: block;
+      font-size: 11px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .ticket-items {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .ticket-items li {
+      font-size: 14.5px;
+      margin-bottom: 11px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .ticket-items li i {
+      color: var(--cyan);
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .ticket-items li strong {
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    /* Dispatch Action Buttons */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-whatsapp-action {
+      background: #25d366;
+      color: #032b14;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s;
+    }
+
+    .btn-whatsapp-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-email-action {
+      background: transparent;
+      border: 1.5px solid var(--cyan);
+      color: var(--cyan);
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .btn-email-action:hover {
+      background: rgba(0, 242, 254, 0.12);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 90px 0;
+      background: var(--navy);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      border-radius: 26px;
+      padding: 34px;
+    }
+
+    .contact-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .contact-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-item:last-child {
+      border: 0;
+    }
+
+    .contact-item i {
+      font-size: 20px;
+      color: var(--cyan);
+      margin-top: 2px;
+    }
+
+    .contact-item small {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .contact-item a {
+      color: #fff;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: var(--cyan);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid var(--glass-border);
+      padding: 35px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-menu { display: none; }
+      .hero-grid, .contact-grid, .quote-grid { grid-template-columns: 1fr; }
+      .cards-grid, .process-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .cards-grid, .process-grid { grid-template-columns: 1fr; }
+      .quote-box { padding: 24px; }
+      .header-contacts { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Ambient VFX Water Droplet Canvas -->
+<!-- Animated Ambient Light VFX & Canvas -->
 <canvas id="vfx-canvas"></canvas>
+<div class="ambient-glow orb-1"></div>
+<div class="ambient-glow orb-2"></div>
 
-<div class="content-wrapper">
+<div class="main-wrapper">
   <!-- Navbar -->
-  <nav class="nav">
+  <nav class="navbar">
     <div class="container nav-inner">
-      <a class="brand" href="#">
-        <div class="brand-waterdrop"></div>
-        <span>AQUERIVA</span>
+      <a href="#" class="brand">
+        <div class="brand-logo-icon"></div>
+        <span class="brand-text">AQUERIVA</span>
       </a>
-      <div class="nav-links">
+
+      <div class="nav-menu">
         <a href="#solutions">Solutions</a>
         <a href="#sizes">Bottles</a>
         <a href="#process">Process</a>
         <a href="#quotation">Quotation</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="tel:7851074751" class="btn btn-primary" style="padding: 10px 20px; font-size: 13.5px;">
-        <i class="fa-solid fa-phone"></i> 7851074751
-      </a>
+
+      <div class="header-contacts">
+        <a href="tel:7851074751" class="nav-phone-pill">
+          <i class="fa-solid fa-phone"></i> 7851074751
+        </a>
+        <a href="tel:6377048563" class="nav-phone-pill">
+          <i class="fa-solid fa-phone"></i> 6377048563
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -698,30 +855,35 @@ h2 {
   <header class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="eyebrow">Custom Branded Packaged Drinking Water</div>
-        <h1>Your Brand. <br><span>Your Signature Bottle.</span></h1>
+        <div class="hero-badge">
+          <i class="fa-solid fa-certificate"></i> Custom Branded Packaged Drinking Water
+        </div>
+        <h1>Your Brand. <br><span>Every Sip. Pure Luxury.</span></h1>
         <p>
-          Transform routine hydration into a powerful branding impression. Certified multi-stage purified water customized with high-definition labels for luxury hotels, banquets, royal weddings, cafes, and corporate conferences across Jaipur.
+          Transform ordinary hydration into an unforgettable high-end branding impression. Certified multi-stage purified water customized with waterproof high-definition labels for luxury hotels, royal weddings, corporate summits, and restaurants across Jaipur.
         </p>
-        <div class="hero-actions">
-          <a href="#quotation" class="btn btn-primary">
-            <i class="fa-solid fa-file-invoice"></i> Configure Quotation
+
+        <div class="hero-buttons">
+          <a href="#quotation" class="btn btn-gradient">
+            <i class="fa-solid fa-file-invoice"></i> Request Custom Quotation
           </a>
-          <a href="https://instagram.com/aqueriva_jaipur" target="_blank" class="btn btn-outline">
+          <a href="https://instagram.com/aqueriva_jaipur" target="_blank" class="btn btn-ghost">
             <i class="fa-brands fa-instagram"></i> @aqueriva_jaipur
           </a>
         </div>
       </div>
 
       <div>
-        <div class="hero-card">
-          <span class="hero-preview-badge">Custom Specification Preview</span>
-          <h3>Aqueriva Private Label</h3>
-          <p>Multi-stage RO & UV Purified water bottled exclusively in food-grade, leak-proof PET containers with custom-cut waterproof branding.</p>
-          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-            <span style="background: rgba(24,200,232,0.15); color: #9eefff; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;">250ml</span>
-            <span style="background: rgba(24,200,232,0.15); color: #9eefff; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;">500ml</span>
-            <span style="background: rgba(24,200,232,0.15); color: #9eefff; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;">1000ml</span>
+        <div class="hero-preview-card">
+          <div class="bottle-glow-circle">
+            <i class="fa-solid fa-bottle-water"></i>
+          </div>
+          <h3>Aqueriva Signature Bottle</h3>
+          <p>Multi-stage RO & UV sterilized drinking water packaged in food-grade, leak-proof PET containers with custom-cut waterproof branding.</p>
+          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <span class="nav-phone-pill"><i class="fa-solid fa-droplet"></i> 250 ml</span>
+            <span class="nav-phone-pill"><i class="fa-solid fa-droplet"></i> 500 ml</span>
+            <span class="nav-phone-pill"><i class="fa-solid fa-droplet"></i> 1000 ml</span>
           </div>
         </div>
       </div>
@@ -732,143 +894,150 @@ h2 {
   <section class="section" id="solutions">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">Application Areas</span>
-        <h2>Designed for Luxury & Impressions</h2>
-        <p>Make every table setting, conference desk, or reception hall reflect your unique brand identity.</p>
+        <span class="section-tag">Applications</span>
+        <h2 class="section-title">Designed for Elite Occasions</h2>
+        <p class="section-desc">Make every dining table, banquet setting, and executive boardroom carry your distinct mark.</p>
       </div>
 
-      <div class="cards">
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-hotel"></i></div>
+      <div class="cards-grid">
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-hotel"></i></div>
           <h3>Hotels & Resorts</h3>
-          <p>Provide private-label bottled water across luxury suites, room service, reception lobbies, and banquet events.</p>
+          <p>Serve private-label bottles in guest suites, dining rooms, room service trays, and welcoming reception bars.</p>
         </div>
 
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-champagne-glasses"></i></div>
           <h3>Weddings & Receptions</h3>
-          <p>Personalize bottles with couple monograms, color-matched wedding aesthetics, and metallic gold foil details.</p>
+          <p>Personalize bottles with couple monograms, thematic wedding colors, and metallic gold foil finishes.</p>
         </div>
 
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
-          <h3>Corporate Summits</h3>
-          <p>Reinforce authority during annual conferences, boardrooms, client meetings, and international trade exhibitions.</p>
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-briefcase"></i></div>
+          <h3>Corporate Events</h3>
+          <p>Leave a polished impression at boardroom meetings, annual summits, seminars, and trade expos.</p>
         </div>
 
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-utensils"></i></div>
-          <h3>Restaurants & Cafes</h3>
-          <p>Elevate dining experiences with customized aesthetic water bottles carrying your kitchen's logo.</p>
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-utensils"></i></div>
+          <h3>Cafes & Restaurants</h3>
+          <p>Elevate the dining experience by placing custom-branded water bottles directly on every table.</p>
         </div>
 
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-car"></i></div>
-          <h3>Automotive & Showrooms</h3>
-          <p>Welcome premium walk-in clientele with refreshing, sleek branded hydration at customer hospitality desks.</p>
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-car"></i></div>
+          <h3>Automotive Lounges</h3>
+          <p>Greet VIP clients at service centers and luxury showrooms with personalized chilled water bottles.</p>
         </div>
 
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3>Certified Purity</h3>
-          <p>Multi-stage filtration including Reverse Osmosis (RO), UV sterilization, and balanced essential mineral content.</p>
+        <div class="glass-card">
+          <div class="card-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>7-Stage Purification</h3>
+          <p>Reverse Osmosis (RO), UV sterilization, and balanced minerals strictly conforming to food safety standards.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Bottle Volumes -->
-  <section class="section sizes" id="sizes">
+  <!-- Animated Wave Separator -->
+  <div class="wave-divider">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+  </div>
+
+  <!-- Bottle Sizes Section -->
+  <section class="section sizes-section" id="sizes">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">Form Factors</span>
-        <h2>Select Your Bottle Format</h2>
-        <p>Carefully engineered food-grade PET shapes designed for effortless handling and premium shelf appeal.</p>
+        <span class="section-tag">Bottle Volumes</span>
+        <h2 class="section-title">Select Your Custom Bottle Form</h2>
+        <p class="section-desc">Ergonomically crafted food-grade PET shapes designed for effortless handling and high shelf appeal.</p>
       </div>
 
-      <div class="cards">
-        <div class="size-card">
-          <div class="size-number">250 ml</div>
-          <h4>Pocket & Banquet Bottle</h4>
-          <p>Compact and elegant. Perfect for quick meetings, welcome trays, and large wedding gatherings.</p>
+      <div class="cards-grid">
+        <div class="glass-card" style="text-align: center;">
+          <div class="size-badge">250 ml</div>
+          <h3>Pocket & Banquet Bottle</h3>
+          <p>Compact and stylish. Ideal for welcome drink trays, wedding functions, and fast-paced networking breaks.</p>
         </div>
 
-        <div class="size-card">
-          <div class="size-number">500 ml</div>
-          <h4>Standard Fine Dining</h4>
-          <p>Our most popular flagship size. Tailored for restaurant dining tables, corporate conferences, and room service.</p>
+        <div class="glass-card" style="text-align: center;">
+          <div class="size-badge">500 ml</div>
+          <h3>Standard Dining & Conference</h3>
+          <p>Our flagship volume. Built for restaurant dining tables, business meetings, and hotel room service.</p>
         </div>
 
-        <div class="size-card">
-          <div class="size-number">1000 ml</div>
-          <h4>1 Litre Executive Luxury</h4>
-          <p>Full-day executive volume. Designed for resort suites, executive lounges, and hospitality bars.</p>
+        <div class="glass-card" style="text-align: center;">
+          <div class="size-badge">1000 ml</div>
+          <h3>1 Litre Executive Luxury</h3>
+          <p>Full-volume luxury presentation. Tailored for resort suites, executive lounges, and hospitality bars.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Production Process -->
-  <section class="section dark" id="process">
+  <section class="section" id="process">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">How It Works</span>
-        <h2>From Digital Concept to Delivery</h2>
-        <p>A streamlined private label manufacturing process handled from start to finish.</p>
+        <span class="section-tag">Workflow</span>
+        <h2 class="section-title">Seamless Production Process</h2>
+        <p class="section-desc">From your digital logo file to sealed cartons delivered at your venue.</p>
       </div>
 
-      <div class="process">
-        <div class="step">
-          <span class="step-no">STEP 01</span>
+      <div class="process-grid">
+        <div class="step-card">
+          <span class="step-badge">STEP 01</span>
           <h3>Quotation Request</h3>
-          <p>Submit your preferred bottle volume, quantity tier, and event specifications through our instant quote form.</p>
+          <p>Choose bottle format, quantity tier, and event details through our interactive quotation engine.</p>
         </div>
 
-        <div class="step">
-          <span class="step-no">STEP 02</span>
-          <h3>Artwork Approval</h3>
-          <p>Our design team creates a 3D digital bottle mockup with your logo, color palette, and label finish for approval.</p>
+        <div class="step-card">
+          <span class="step-badge">STEP 02</span>
+          <h3>Design & 3D Mockup</h3>
+          <p>We generate a 3D digital preview of your custom label with your logo and colors for approval.</p>
         </div>
 
-        <div class="step">
-          <span class="step-no">STEP 03</span>
+        <div class="step-card">
+          <span class="step-badge">STEP 03</span>
           <h3>Purification & Print</h3>
-          <p>Water undergoes multi-stage filtration while waterproof labels are precision printed on industrial presses.</p>
+          <p>Water undergoes multi-stage filtration while waterproof labels are printed on industrial presses.</p>
         </div>
 
-        <div class="step">
-          <span class="step-no">STEP 04</span>
+        <div class="step-card">
+          <span class="step-badge">STEP 04</span>
           <h3>Direct Delivery</h3>
-          <p>Finished, sealed, batch-tested customized cases are dispatched directly to your destination across Jaipur.</p>
+          <p>Finished, batch-tested, sealed custom cartons are dispatched directly to your location in Jaipur.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pure Quotation System (Strictly No Prices) -->
+  <!-- Quotation Section (NO PRICES, FULLY INTERACTIVE) -->
   <section class="quote-section" id="quotation">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">Specification Builder</span>
-        <h2>Build Your Custom Quotation</h2>
-        <p>Choose your required bottle format and custom branding details below to receive a formal quotation directly from our team.</p>
+        <span class="section-tag">Quotation Engine</span>
+        <h2 class="section-title">Configure Your Custom Quotation</h2>
+        <p class="section-desc">Specify your required bottle volume and custom branding requirements below to receive a formal quotation directly from our team.</p>
       </div>
 
-      <div class="quote-box-wrapper">
+      <div class="quote-box">
         <div class="quote-grid">
-          <!-- Configuration Form -->
+          <!-- Selection Controls -->
           <div>
             <div class="form-group">
-              <label for="clientName">Client / Organization Name</label>
-              <input type="text" id="clientName" placeholder="e.g. Royal Heritage Resort or Rahul Sharma">
+              <label for="clientName">Client / Business Name</label>
+              <input type="text" id="clientName" placeholder="e.g. Royal Palace Hotel or Rahul Sharma">
             </div>
 
             <div class="form-group">
               <label for="bottleSize">Select Bottle Volume</label>
               <select id="bottleSize" class="select-box">
-                <option value="250 ml (Pocket / Banquet)">250 ml (Pocket & Banquet Bottle)</option>
-                <option value="500 ml (Dining / Conference)" selected>500 ml (Standard Dining & Conference)</option>
-                <option value="1000 ml (1L Executive)">1000 ml / 1 Litre (Executive Luxury Bottle)</option>
+                <option value="250 ml (Pocket & Banquet)">250 ml (Pocket & Banquet Bottle)</option>
+                <option value="500 ml (Standard Dining)" selected>500 ml (Standard Dining & Conference)</option>
+                <option value="1000 ml (1 Litre Luxury)">1000 ml / 1 Litre (Executive Luxury Bottle)</option>
               </select>
             </div>
 
@@ -893,18 +1062,18 @@ h2 {
             </div>
 
             <div class="form-group">
-              <label for="eventType">Purpose / Category</label>
+              <label for="eventType">Purpose / Event Category</label>
               <select id="eventType" class="select-box">
                 <option value="Hotel / Resort / Banquet" selected>Hotel / Resort / Banquet</option>
                 <option value="Wedding / Family Celebration">Wedding / Family Celebration</option>
-                <option value="Corporate Summit / Conference">Corporate Summit / Conference</option>
+                <option value="Corporate Conference / Summit">Corporate Conference / Summit</option>
                 <option value="Restaurant / Cafe Tabletop">Restaurant / Cafe Tabletop</option>
-                <option value="Institutional / Bulk Requirement">Institutional / Bulk Requirement</option>
+                <option value="Other Bulk Requirement">Other Bulk Requirement</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Estimated Quantity: <strong id="qtyVal" style="color: var(--blue);">1,000</strong> Units</label>
+              <label>Estimated Quantity: <strong id="qtyVal" style="color: var(--cyan);">1,000</strong> Units</label>
               <input type="range" id="quantityRange" class="range-slider" min="300" max="15000" step="100" value="1000">
             </div>
 
@@ -915,21 +1084,21 @@ h2 {
           </div>
 
           <!-- Dynamic Specification Ticket -->
-          <div class="ticket-card">
+          <div class="ticket-panel">
             <div>
               <div class="ticket-head">
-                <h3><i class="fa-solid fa-clipboard-check"></i> Quotation Ticket</h3>
-                <small>Live Requirements Blueprint</small>
+                <h3><i class="fa-solid fa-clipboard-list" style="color: var(--cyan);"></i> Order Blueprint</h3>
+                <small>Live Custom Quotation Request</small>
               </div>
 
-              <ul class="ticket-list">
+              <ul class="ticket-items">
                 <li>
                   <i class="fa-solid fa-check"></i>
                   <div><strong>Client:</strong> <span id="summaryName">To be specified</span></div>
                 </li>
                 <li>
                   <i class="fa-solid fa-check"></i>
-                  <div><strong>Bottle Size:</strong> <span id="summarySize">500 ml (Standard Dining & Conference)</span></div>
+                  <div><strong>Bottle Size:</strong> <span id="summarySize">500 ml (Standard Dining)</span></div>
                 </li>
                 <li>
                   <i class="fa-solid fa-check"></i>
@@ -937,7 +1106,7 @@ h2 {
                 </li>
                 <li>
                   <i class="fa-solid fa-check"></i>
-                  <div><strong>Label Finish:</strong> <span id="summaryFinish">Glossy Vinyl (Waterproof & High Shine)</span></div>
+                  <div><strong>Label Finish:</strong> <span id="summaryFinish">Glossy Vinyl (Waterproof)</span></div>
                 </li>
                 <li>
                   <i class="fa-solid fa-check"></i>
@@ -954,32 +1123,19 @@ h2 {
               </ul>
             </div>
 
-            <!-- Submission Actions -->
-            <div class="dispatch-actions">
-              <button onclick="sendQuotationWhatsApp()" class="btn-wa">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Request Quote via WhatsApp
+            <div class="action-group">
+              <button onclick="sendQuotationWhatsApp('7851074751')" class="btn-whatsapp-action">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> WhatsApp (+91 7851074751)
               </button>
-              <button onclick="sendQuotationEmail()" class="btn-mail">
-                <i class="fa-solid fa-envelope"></i> Request Quote via Email
+              <button onclick="sendQuotationWhatsApp('6377048563')" class="btn-whatsapp-action" style="background: #128c7e; color: #fff;">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> WhatsApp (+91 6377048563)
+              </button>
+              <button onclick="sendQuotationEmail()" class="btn-email-action">
+                <i class="fa-solid fa-envelope"></i> Send via Email
               </button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="cta">
-    <div class="container cta-inner">
-      <div>
-        <h2>Ready to Label Your First Batch?</h2>
-        <p>Speak directly with our packaging team for label sample reviews, bottle mockups, and quick turnarounds.</p>
-      </div>
-      <div>
-        <a href="tel:7851074751" class="btn btn-outline" style="background: #fff; color: var(--navy); font-weight: 800;">
-          <i class="fa-solid fa-phone"></i> Call +91 7851074751
-        </a>
       </div>
     </div>
   </section>
@@ -988,24 +1144,28 @@ h2 {
   <section class="contact-section" id="contact">
     <div class="container">
       <div class="contact-grid">
-        <div class="contact-box">
-          <h3>Official Inquiries</h3>
-          <p style="color: var(--muted); margin-bottom: 20px; font-size: 14.5px;">
-            Aqueriva provides end-to-end custom packaged drinking water services across Jaipur and surrounding regions. Connect with our desk below:
+        <div class="contact-card">
+          <h3>Direct Contact</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 14.5px;">
+            Connect with our Jaipur operations desk directly for bottle sampling, design proofs, and quick dispatch coordination.
           </p>
 
           <div class="contact-item">
             <i class="fa-solid fa-phone"></i>
             <div>
-              <small>Call or WhatsApp</small>
-              <a href="tel:7851074751">+91 7851074751</a>
+              <small>Phone & WhatsApp Lines</small>
+              <div class="phone-row">
+                <a href="tel:7851074751">+91 7851074751</a>
+                <span style="color: var(--glass-border);">|</span>
+                <a href="tel:6377048563">+91 6377048563</a>
+              </div>
             </div>
           </div>
 
           <div class="contact-item">
             <i class="fa-solid fa-envelope"></i>
             <div>
-              <small>Email Inquiries</small>
+              <small>Email Official</small>
               <a href="mailto:aqueriva.jaipur@rediffmail.com">aqueriva.jaipur@rediffmail.com</a>
             </div>
           </div>
@@ -1013,28 +1173,28 @@ h2 {
           <div class="contact-item">
             <i class="fa-brands fa-instagram"></i>
             <div>
-              <small>Instagram Official</small>
+              <small>Instagram Updates</small>
               <a href="https://instagram.com/aqueriva_jaipur" target="_blank">@aqueriva_jaipur</a>
             </div>
           </div>
         </div>
 
-        <div class="contact-box">
-          <h3>Operations & Dispatch Hub</h3>
+        <div class="contact-card">
+          <h3>Operations Hub</h3>
           <div class="contact-item">
             <i class="fa-solid fa-location-dot"></i>
             <div>
               <small>Headquarters</small>
-              <p style="font-weight: 700; color: var(--navy);">Jaipur, Rajasthan, India</p>
+              <p style="font-weight: 700; color: #fff;">Jaipur, Rajasthan, India</p>
             </div>
           </div>
 
           <div class="contact-item">
-            <i class="fa-solid fa-truck-ramp-box"></i>
+            <i class="fa-solid fa-truck-fast"></i>
             <div>
-              <small>Delivery Coverage</small>
-              <p style="font-size: 14px; color: var(--muted); margin-top: 2px;">
-                Direct delivery across Jaipur hotels, wedding venues, conference centers, cafes, and bulk institutional buyers.
+              <small>Distribution Area</small>
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 2px;">
+                Direct delivery across all Jaipur hotels, banquets, luxury resorts, conference centers, and wedding venues.
               </p>
             </div>
           </div>
@@ -1043,8 +1203,8 @@ h2 {
             <i class="fa-solid fa-droplet"></i>
             <div>
               <small>Purification Standards</small>
-              <p style="font-size: 14px; color: var(--muted); margin-top: 2px;">
-                7-Stage RO + UV sterilized packaged drinking water meeting national safety and food safety compliance.
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 2px;">
+                7-Stage RO + UV sterilized packaged drinking water with certified food-grade packaging compliance.
               </p>
             </div>
           </div>
@@ -1054,15 +1214,17 @@ h2 {
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
+  <footer>
+    <div class="container">
       <div>&copy; 2026 AQUERIVA — Custom Branded Water. All Rights Reserved.</div>
-      <div>Designed for Hotels, Weddings, Corporates & Elite Dining across Jaipur.</div>
+      <div style="font-size: 12px; margin-top: 5px; color: #5a7394;">
+        Serving Hotels, Weddings, Corporates & Restaurants across Jaipur, Rajasthan.
+      </div>
     </div>
   </footer>
 </div>
 
-<!-- Ambient Water VFX Particles Canvas Script -->
+<!-- Interactive VFX Water Bubble Physics Script -->
 <script>
   const canvas = document.getElementById('vfx-canvas');
   const ctx = canvas.getContext('2d');
@@ -1071,52 +1233,71 @@ h2 {
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
+  let mouse = { x: width / 2, y: height / 2 };
+
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   });
 
-  class WaterBubble {
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  class WaterParticle {
     constructor() {
       this.reset();
     }
     reset() {
       this.x = Math.random() * width;
-      this.y = height + Math.random() * 80;
-      this.radius = Math.random() * 4.5 + 2;
-      this.speedY = Math.random() * 1.4 + 0.6;
-      this.speedX = Math.sin(Math.random()) * 0.4;
-      this.alpha = Math.random() * 0.25 + 0.08;
+      this.y = height + Math.random() * 100;
+      this.radius = Math.random() * 4.5 + 1.8;
+      this.speedY = Math.random() * 1.5 + 0.6;
+      this.speedX = (Math.random() - 0.5) * 0.8;
+      this.alpha = Math.random() * 0.35 + 0.1;
     }
     update() {
       this.y -= this.speedY;
       this.x += this.speedX;
-      if (this.y < -20) this.reset();
+
+      // Mouse repulsion physics
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        this.x -= (dx / dist) * 2;
+        this.y -= (dy / dist) * 2;
+      }
+
+      if (this.y < -30) this.reset();
     }
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(24, 200, 232, ${this.alpha})`;
+      ctx.fillStyle = `rgba(0, 242, 254, ${this.alpha})`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#00f2fe';
       ctx.fill();
       ctx.closePath();
     }
   }
 
-  for (let i = 0; i < 35; i++) {
-    particles.push(new WaterBubble());
+  for (let i = 0; i < 50; i++) {
+    particles.push(new WaterParticle());
   }
 
-  function animateVFX() {
+  function renderVFX() {
     ctx.clearRect(0, 0, width, height);
     particles.forEach(p => {
       p.update();
       p.draw();
     });
-    requestAnimationFrame(animateVFX);
+    requestAnimationFrame(renderVFX);
   }
-  animateVFX();
+  renderVFX();
 
-  // Quotation System Dynamic Synchronization (No Prices)
+  // Quotation System Synchronization (NO PRICES)
   const clientInput = document.getElementById('clientName');
   const sizeSelect = document.getElementById('bottleSize');
   const finishSelect = document.getElementById('labelFinish');
@@ -1134,7 +1315,7 @@ h2 {
   const summaryEvent = document.getElementById('summaryEvent');
   const summaryLocation = document.getElementById('summaryLocation');
 
-  function updateQuotationTicket() {
+  function updateTicket() {
     const name = clientInput.value.trim() || 'Client (Unspecified)';
     const size = sizeSelect.value;
     const finish = finishSelect.value;
@@ -1154,9 +1335,9 @@ h2 {
   }
 
   [clientInput, sizeSelect, finishSelect, capSelect, eventSelect, qtyInput, locInput].forEach(el => {
-    el.addEventListener('input', updateQuotationTicket);
+    el.addEventListener('input', updateTicket);
   });
-  updateQuotationTicket();
+  updateTicket();
 
   function getPayload() {
     return {
@@ -1170,35 +1351,35 @@ h2 {
     };
   }
 
-  // WhatsApp Quotation Request
-  function sendQuotationWhatsApp() {
+  // WhatsApp Dispatch supporting both numbers
+  function sendQuotationWhatsApp(targetNumber) {
     const data = getPayload();
     const msg = `Hello Aqueriva Jaipur! I would like to request a formal quotation for Custom Branded Water:%0A%0A` +
-      `• Name / Brand: ${encodeURIComponent(data.name)}%0A` +
+      `• Client/Brand: ${encodeURIComponent(data.name)}%0A` +
       `• Bottle Volume: ${encodeURIComponent(data.size)}%0A` +
       `• Label Finish: ${encodeURIComponent(data.finish)}%0A` +
       `• Cap Style: ${encodeURIComponent(data.cap)}%0A` +
       `• Quantity: ${data.qty} units%0A` +
-      `• Requirement: ${encodeURIComponent(data.eventType)}%0A` +
-      `• Location: ${encodeURIComponent(data.location)}%0A%0A` +
-      `Please provide your best quotation and digital mockup details.`;
+      `• Purpose: ${encodeURIComponent(data.eventType)}%0A` +
+      `• Delivery Location: ${encodeURIComponent(data.location)}%0A%0A` +
+      `Please provide the quotation and digital mockup details.`;
 
-    window.open(`https://wa.me/917851074751?text=${msg}`, '_blank');
+    window.open(`https://wa.me/91${targetNumber}?text=${msg}`, '_blank');
   }
 
-  // Email Quotation Request
+  // Email Dispatch
   function sendQuotationEmail() {
     const data = getPayload();
     const subject = encodeURIComponent(`Quotation Request - Custom Branded Water (${data.name})`);
     const body = encodeURIComponent(
-      `Dear Aqueriva Team,\n\nPlease provide a formal quotation for custom packaged drinking water according to the following requirements:\n\n` +
-      `- Client / Organization: ${data.name}\n` +
+      `Dear Aqueriva Team,\n\nPlease provide a formal quotation for custom packaged drinking water according to the following specifications:\n\n` +
+      `- Client / Brand: ${data.name}\n` +
       `- Bottle Volume: ${data.size}\n` +
       `- Label Finish: ${data.finish}\n` +
       `- Cap Seal Style: ${data.cap}\n` +
       `- Quantity Required: ${data.qty} units\n` +
-      `- Purpose: ${data.eventType}\n` +
-      `- Delivery Destination: ${data.location}\n\n` +
+      `- Purpose / Event: ${data.eventType}\n` +
+      `- Delivery Location: ${data.location}\n\n` +
       `Looking forward to your quotation and timeline.\n\nThank you!`
     );
 
